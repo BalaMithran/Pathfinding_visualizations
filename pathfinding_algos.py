@@ -295,15 +295,14 @@ def get_clicked_pos(pos, rows, width):
 	return row, col
 
 
-def main(win, width):
+def main(win, width , flagg):
     
 	# app = QtWidgets.QApplication(sys.argv)
 	# MainWindow = QtWidgets.QMainWindow()
 	# ui = Ui_MainWindow()
 	# ui.setupUi(MainWindow)
 	# MainWindow.show()
-	print("Enter 1 for 'A star' or 2 for 'Djikstra'")
-	flagg = int(input())
+	
 	print(flagg)
 	ROWS = 50
 	grid = make_grid(ROWS, width)
@@ -315,8 +314,10 @@ def main(win, width):
 	while run:
 		draw(win, grid, ROWS, width)
 		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				run = False
+			
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_ESCAPE:
+					run = False
 			
 
 			if pygame.mouse.get_pressed()[0]: # LEFT
@@ -363,6 +364,5 @@ def main(win, width):
 					end = None
 					grid = make_grid(ROWS, width)
 
-	pygame.quit()
+	
 
-main(WIN, WIDTH)
